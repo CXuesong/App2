@@ -17,14 +17,33 @@ namespace App2.Droid
 	[Activity (Label = "App2.Droid", MainLauncher = true, Icon = "@drawable/icon")]
 	public class MainActivity : Activity
 	{
-        private bool stateInvalidated = true;
+        private ActionBar.Tab AddTab(string title, EventHandler<ActionBar.TabEventArgs> onTabSelected)
+        {
+            var tab = ActionBar.NewTab();
+            tab.SetText(title);
+            tab.TabSelected += onTabSelected;
+            ActionBar.AddTab(tab);
+            return tab;
+        }
+
+        private ActionBar.Tab AddTab<TFragment>(string title) where TFragment : Fragment, new()
+        {
+            return AddTab(title, (sender, e) =>
+            {
+                e.FragmentTransaction.Replace(Resource.Id.primaryContainer, new TFragment());
+            });
+        }
 
         protected override async void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
             //初始化
             AndroidEnvironment.UnhandledExceptionRaiser += AndroidEnvironment_UnhandledExceptionRaiser;
+            //构造界面
+            ActionBar.NavigationMode = ActionBarNavigationMode.Tabs;
             SetContentView(Resource.Layout.Main);
+            AddTab<CardManagementFragment>("校园卡");
+            AddTab<AboutFragment>("关于");
             GlobalServices.XjtuSite.Account.IsLoggedInChanged += Account_IsLoggedInChanged;
             await UpdateAccountFragment();
         }

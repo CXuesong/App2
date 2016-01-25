@@ -55,7 +55,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DroidUtility.cs" />
+    <Compile Include="Fragments\AboutFragment.cs" />
     <Compile Include="Fragments\AccountProfileFragment.cs" />
+    <Compile Include="Fragments\CardManagementFragment.cs" />
     <Compile Include="Fragments\LoginFragment.cs" />
     <Compile Include="GlobalServices.cs" />
     <Compile Include="MainActivity.cs" />
@@ -74,6 +76,10 @@
       <SubType>AndroidResource</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\Empty.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\About.axml" />
+    <AndroidResource Include="Resources\layout\CardManagement.axml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>
   </ItemGroup>

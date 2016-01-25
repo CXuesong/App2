@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:stretchColumns="1">
+    <TableRow>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_column="1"
+            android:id="@+id/linearLayout1">
+            <TextView
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="余额："
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/textView7" />
+            <TextView
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Text"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/balanceTextView" />
+        </LinearLayout>
+    </TableRow>
+    <TableRow>
+        <TableLayout
+            android:orientation="vertical"
+            android:layout_column="1"
+            android:id="@+id/linearLayout2"
+            android:stretchColumns="0">
+            <TableRow>
+                <TextView
+                    android:text="转账"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView11" />
+            </TableRow>
+            <TableRow>
+                <EditText
+                    android:inputType="numberDecimal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/transferAmountEditView"
+                    android:hint="键入金额" />
+                <Button
+                    android:text="转入校园卡"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/transferButton"
+                    android:layout_column="1" />
+            </TableRow>
+        </TableLayout>
+    </TableRow>
+</TableLayout>
