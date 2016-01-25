@@ -15,7 +15,7 @@ using App2.Droid.Fragments;
 namespace App2.Droid
 {
     [Activity(Label = "Login", Icon = "@drawable/icon")]
-    public class LoginActivity : Activity
+    public class LoginActivity : MyActivity
     {
         private EditText userNameView;
         private EditText passwordView;

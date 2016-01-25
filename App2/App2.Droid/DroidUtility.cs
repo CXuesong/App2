@@ -27,7 +27,7 @@ namespace App2.Droid
 
         public static void ShowToast(Context context, string str)
         {
-            using (var t = Toast.MakeText(context, str, ToastLength.Long))
+            using (var t = Toast.MakeText(context, str, ToastLength.Short))
             {
                 t.Show();
             }

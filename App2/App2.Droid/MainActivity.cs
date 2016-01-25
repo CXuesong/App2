@@ -15,7 +15,7 @@ using Java.IO;
 namespace App2.Droid
 {
 	[Activity (Label = "App2.Droid", Icon = "@drawable/icon")]
-	public class MainActivity : Activity
+	public class MainActivity : MyActivity
 	{
         private ActionBar.Tab AddTab(string title, EventHandler<ActionBar.TabEventArgs> onTabSelected)
         {

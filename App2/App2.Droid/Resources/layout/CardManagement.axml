@@ -3,12 +3,12 @@
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:stretchColumns="1">
+    android:stretchColumns="0">
     <TableRow>
         <LinearLayout
             android:orientation="horizontal"
-            android:layout_column="1"
-            android:id="@+id/linearLayout1">
+            android:id="@+id/linearLayout1"
+            android:layout_gravity="center">
             <TextView
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="余额："
@@ -22,35 +22,39 @@
                 android:layout_height="match_parent"
                 android:id="@+id/balanceTextView" />
         </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:id="@+id/linearLayout2">
+            <Button
+                android:text="刷新"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/refreshButton"
+                android:layout_column="1" />
+        </LinearLayout>
     </TableRow>
     <TableRow>
-        <TableLayout
-            android:orientation="vertical"
+        <TextView
+            android:text="转账"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView11"
+            android:layout_gravity="center" />
+    </TableRow>
+    <TableRow>
+        <EditText
+            android:inputType="numberDecimal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/transferAmountEditText"
+            android:hint="键入金额" />
+        <Button
+            android:text="转入校园卡"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/transferButton"
             android:layout_column="1"
-            android:id="@+id/linearLayout2"
-            android:stretchColumns="0">
-            <TableRow>
-                <TextView
-                    android:text="转账"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/textView11" />
-            </TableRow>
-            <TableRow>
-                <EditText
-                    android:inputType="numberDecimal"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:id="@+id/transferAmountEditView"
-                    android:hint="键入金额" />
-                <Button
-                    android:text="转入校园卡"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:id="@+id/transferButton"
-                    android:layout_column="1" />
-            </TableRow>
-        </TableLayout>
+            android:enabled="false" />
     </TableRow>
 </TableLayout>

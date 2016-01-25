@@ -99,6 +99,8 @@ password=xxxx&checkCode=1222&amt=10.00&fcard=bcard&tocard=card&bankno=&bankpwd=
         }
 
         internal CardManager(XjtuSiteManager site) : base(site)
-        { }
+        {
+            this.Invalidate();
+        }
     }
 }

@@ -16,6 +16,25 @@ namespace App2
 {
     partial class GlobalServices
     {
+        private static WeakReference<Context> _currentContext = new WeakReference<Context>(null);
+
+        /// <summary>
+        /// 应用程序当前活动的上下文。（一般为 Activity）
+        /// </summary>
+        public static Context CurrentContext
+        {
+            get
+            {
+                Context c;
+                if (_currentContext.TryGetTarget(out c)) return c;
+                return null;
+            }
+            set
+            {
+                _currentContext.SetTarget(value);
+            }
+        }
+
         static partial void LoadXjtuSite()
         {
             try
@@ -45,13 +64,17 @@ namespace App2
 
         static partial void Initialize()
         {
+            // 允许对未处理的异常进行报告。
             AndroidEnvironment.UnhandledExceptionRaiser += AndroidEnvironment_UnhandledExceptionRaiser;
         }
 
         private static void AndroidEnvironment_UnhandledExceptionRaiser(object sender, RaiseThrowableEventArgs e)
         {
-            DroidUtility.ReportException(Application.Context, e.Exception, true);
-            e.Handled = true;
+            if (CurrentContext != null)
+            {
+                DroidUtility.ReportException(CurrentContext, e.Exception, true);
+                e.Handled = true;
+            }
         }
     }
 }
