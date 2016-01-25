@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:stretchColumns="1">
+    <TableRow>
+        <ImageView
+            android:src="@android:drawable/ic_menu_gallery"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView1"
+            android:layout_span="2" />
+    </TableRow>
+    <TableRow>
+        <TextView
+            android:text="账号"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/textView1"
+            android:layout_gravity="center" />
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/accountNameEdit"
+            android:layout_column="1" />
+    </TableRow>
+    <TableRow>
+        <TextView
+            android:text="密码"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/textView1" />
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/passwordEdit"
+            android:layout_column="1"
+            android:inputType="textPassword" />
+    </TableRow>
+    <TableRow>
+        <CheckBox
+            android:text="记住密码"
+            android:layout_column="1"
+            android:id="@+id/savePasswordCheckbox" />
+    </TableRow>
+    <TableRow>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:minWidth="25px"
+            android:minHeight="25px"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/linearLayout1"
+            android:layout_span="2"
+            android:layout_gravity="center">
+            <Button
+                android:text="登录"
+                android:id="@+id/loginButton"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:enabled="false" />
+        </LinearLayout>
+    </TableRow>
+</TableLayout>

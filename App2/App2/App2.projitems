@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>feb4a533-b3ad-458e-9e1a-984ba65a90a6</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>App2</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)GlobalServices.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IVerificationCodeRecognizer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Exceptions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IUpdatable.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PortableWebClient.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SiteManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Xjtu\AccountManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Xjtu\CardManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Xjtu\XjtuSiteManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Xjtu\XjtuSubManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Xjtu\XjtuUtility.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)Lib\MobileHtmlAgilityPack.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+</Project>
