@@ -18,11 +18,15 @@ namespace UnitTestProject1
                 var a = m.RequireService<AccountManager>();
                 await a.UpdateCoreAsync();
                 Trace.WriteLine($"IsLoggedIn = {a.IsLoggedIn}");
-                //await a.LoginAsync("abc", "def");
                 Utility.LoginSiteManager(m);
                 Trace.WriteLine($"IsLoggedIn = {a.IsLoggedIn}");
                 Trace.WriteLine($"UserName = {a.UserName}");
+                Assert.IsTrue(a.IsLoggedIn);
                 await a.LogoutAsync();
+                await a.UpdateAsync();
+                Trace.WriteLine($"IsLoggedIn = {a.IsLoggedIn}");
+                Trace.WriteLine($"UserName = {a.UserName}");
+                Assert.IsFalse(a.IsLoggedIn);
             }
         }
 

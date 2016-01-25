@@ -57,7 +57,7 @@
     <Compile Include="DroidUtility.cs" />
     <Compile Include="Fragments\AccountProfileFragment.cs" />
     <Compile Include="Fragments\LoginFragment.cs" />
-    <Compile Include="Fragments\StateSaverFragment.cs" />
+    <Compile Include="GlobalServices.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

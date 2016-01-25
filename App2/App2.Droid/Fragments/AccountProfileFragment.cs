@@ -16,8 +16,6 @@ namespace App2.Droid.Fragments
 {
     public class AccountProfileFragment : Fragment
     {
-        private AccountManager account;
-
         public override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -26,8 +24,7 @@ namespace App2.Droid.Fragments
 
         public override void OnAttach(Activity activity)
         {
-            account = ((IServiceProvider)activity).RequireService<AccountManager>();
-            account.Updated += Account_Updated;
+            GlobalServices.XjtuSite.Account.Updated += Account_Updated;
             base.OnAttach(activity);
         }
 
@@ -38,7 +35,7 @@ namespace App2.Droid.Fragments
 
         public override void OnDetach()
         {
-            account.Updated += Account_Updated;
+            GlobalServices.XjtuSite.Account.Updated += Account_Updated;
             base.OnDetach();
         }
 
@@ -47,7 +44,7 @@ namespace App2.Droid.Fragments
             if (view == null) view = this.View;
             if (view == null) return;
             var userNameView = view.FindViewById<TextView>(Resource.Id.userNameView);
-            userNameView.Text = account.UserName;
+            userNameView.Text = GlobalServices.XjtuSite.Account.UserName;
         }
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -59,7 +56,7 @@ namespace App2.Droid.Fragments
                 logoutButton.Enabled = false;
                 try
                 {
-                    await account.LogoutAsync();
+                    await GlobalServices.XjtuSite.Account.LogoutAsync();
                     DroidUtility.ShowToast(Activity, "×¢Ïú³É¹¦¡£");
                 }
                 catch (Exception ex)

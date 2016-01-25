@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Threading.Tasks;
 using Android.App;
 using Android.Content;
 using Android.Runtime;
@@ -14,37 +15,30 @@ using Java.IO;
 namespace App2.Droid
 {
 	[Activity (Label = "App2.Droid", MainLauncher = true, Icon = "@drawable/icon")]
-	public class MainActivity : Activity, IServiceProvider
+	public class MainActivity : Activity
 	{
-	    private XjtuSiteManager site;
-
         private bool stateInvalidated = true;
 
-	    private void EnsureStateLoaded()
-	    {
-	        if (!stateInvalidated) return;
-            var stateSaver = FragmentManager.FindFragmentById<StateSaverFragment>(Resource.Id.stateSaver);
-            site = stateSaver.TryGetState<XjtuSiteManager>("site") ?? new XjtuSiteManager();
-	        stateInvalidated = false;
-	    }
-
-        protected override void OnCreate(Bundle bundle)
-		{
-			base.OnCreate(bundle);
+        protected override async void OnCreate(Bundle bundle)
+        {
+            base.OnCreate(bundle);
+            //初始化
             AndroidEnvironment.UnhandledExceptionRaiser += AndroidEnvironment_UnhandledExceptionRaiser;
             SetContentView(Resource.Layout.Main);
-            EnsureStateLoaded();
-            site.Account.IsLoggedInChanged += (_, e) =>
-		    {
-		        UpdateAccountFragment();
-		    };
-		    UpdateAccountFragment();
-		}
+            GlobalServices.XjtuSite.Account.IsLoggedInChanged += Account_IsLoggedInChanged;
+            await UpdateAccountFragment();
+        }
+
+        private async void Account_IsLoggedInChanged(object sender, EventArgs e)
+        {
+            await UpdateAccountFragment();
+        }
 
         protected override void OnStop()
         {
             base.OnStop();
-            SaveSiteManager();
+            GlobalServices.SaveState();
+            GlobalServices.XjtuSite.Account.IsLoggedInChanged -= Account_IsLoggedInChanged;
             AndroidEnvironment.UnhandledExceptionRaiser -= AndroidEnvironment_UnhandledExceptionRaiser;
         }
 
@@ -54,44 +48,14 @@ namespace App2.Droid
             e.Handled = true;
         }
 
-        public object GetService(Type serviceType)
-	    {
-            if (serviceType == typeof(XjtuSiteManager))
-                return site;
-            else
-                return site.GetService(serviceType);
-	    }
-
-        private static readonly BinaryFormatter seriFormatter = new BinaryFormatter();
-
-	    public void SaveSiteManager()
-	    {
-	        using (var fs = ApplicationContext.OpenFileOutput("siteCookies", FileCreationMode.Private))
-	        {
-	            seriFormatter.Serialize(fs, site.WebClient.CookieContainer);
-	        }
-        }
-
-        public XjtuSiteManager LoadSiteManager()
+        public async Task UpdateAccountFragment()
         {
-            var newInst = new XjtuSiteManager();
-            try
+            if (GlobalServices.XjtuSite.Account.IsInvalidated)
             {
-                using (var fs = ApplicationContext.OpenFileOutput("siteCookies", FileCreationMode.Private))
-                {
-                    var cc = (CookieContainer) seriFormatter.Deserialize(fs);
-                    newInst.WebClient.CookieContainer = cc;
-                }
+                DroidUtility.ShowToast(this, "正在载入账户信息……");
+                await GlobalServices.XjtuSite.Account.UpdateAsync();
             }
-            catch (FileNotFoundException)
-            {
-            }
-            return newInst;
-        }
-
-        public void UpdateAccountFragment()
-	    {
-	        if (site.Account.IsLoggedIn)
+            if (GlobalServices.XjtuSite.Account.IsLoggedIn)
 	        {
 	            if (!(FragmentManager.FindFragmentById(Resource.Id.accountContainer) is AccountProfileFragment))
 	            {

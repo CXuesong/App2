@@ -7,6 +7,8 @@ namespace App2.Xjtu
 {
     public class XjtuSubManager : IUpdatable
     {
+        private bool _IsInvalidated = false;
+
         internal XjtuSubManager(XjtuSiteManager site)
         {
             if (site == null) throw new ArgumentNullException(nameof(site));
@@ -21,6 +23,7 @@ namespace App2.Xjtu
         public async Task UpdateAsync()
         {
             await UpdateCoreAsync();
+            _IsInvalidated = false;
             OnUpdated();
         }
 
@@ -30,6 +33,16 @@ namespace App2.Xjtu
         }
 
         public event EventHandler Updated;
+
+        public bool IsInvalidated => _IsInvalidated;
+
+        /// <summary>
+        /// 设置标记，指示当前对象的内容需要更新了。
+        /// </summary>
+        public void Invalidate()
+        {
+            _IsInvalidated = true;
+        }
 
         protected virtual void OnUpdated()
         {

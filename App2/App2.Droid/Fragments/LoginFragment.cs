@@ -17,7 +17,6 @@ namespace App2.Droid.Fragments
 {
     public class LoginFragment : Fragment
     {
-        private AccountManager account;
         private EditText userNameView;
         private EditText passwordView;
         private Button loginButton;
@@ -30,7 +29,6 @@ namespace App2.Droid.Fragments
 
         public override void OnAttach(Activity activity)
         {
-            account = ((IServiceProvider)activity).RequireService<AccountManager>();
             base.OnAttach(activity);
         }
 
@@ -57,7 +55,7 @@ namespace App2.Droid.Fragments
                 loginButton.Enabled = false;
                 try
                 {
-                    await account.LoginAsync(userNameView.Text, passwordView.Text);
+                    await GlobalServices.XjtuSite.Account.LoginAsync(userNameView.Text, passwordView.Text);
                     DroidUtility.ShowToast(Activity, "µÇÂ¼³É¹¦¡£");
                 }
                 catch (Exception ex)

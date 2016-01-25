@@ -84,12 +84,6 @@ namespace App2.Droid
 			// aapt resource value: 0x7f050006
 			public const int savePasswordCheckbox = 2131034118;
 			
-			// aapt resource value: 0x7f05000b
-			public const int stateSaver = 2131034123;
-			
-			// aapt resource value: 0x7f05000a
-			public const int stateSaverContainer = 2131034122;
-			
 			// aapt resource value: 0x7f050003
 			public const int textView1 = 2131034115;
 			

@@ -17,5 +17,10 @@ namespace App2
         Task UpdateAsync();
 
         event EventHandler Updated;
+
+        /// <summary>
+        /// 指示当前对象的内容是否应当更新了。
+        /// </summary>
+        bool IsInvalidated { get; }
     }
 }

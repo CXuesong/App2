@@ -9,16 +9,4 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/accountContainer" />
-    <LinearLayout
-        android:minWidth="25px"
-        android:minHeight="25px"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/stateSaverContainer">
-        <fragment
-            class="App2.Droid.Fragments.StateSaverFragment"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:id="@+id/stateSaver" />
-    </LinearLayout>
 </LinearLayout>

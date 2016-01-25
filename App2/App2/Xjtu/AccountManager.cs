@@ -14,7 +14,7 @@ namespace App2.Xjtu
     public class AccountManager : XjtuSubManager
     {
         public const string PortalPageUrl = "http://my.xjtu.edu.cn/";
-        public const string LogoutPageUrl = "https://cas.xjtu.edu.cn/logout/";
+        public const string LogoutPageUrl = "https://cas.xjtu.edu.cn/logout";
 
         private bool _IsLoggedIn;
         private string _UserId;
@@ -23,7 +23,9 @@ namespace App2.Xjtu
         public event EventHandler IsLoggedInChanged;
 
         internal AccountManager(XjtuSiteManager site) : base(site)
-        { }
+        {
+            this.Invalidate();
+        }
 
         public bool IsLoggedIn => _IsLoggedIn;
 
@@ -103,7 +105,6 @@ submit:登录
             if (casAuthenticationDictBuffer == null) await UpdateCoreAsync();
             var dict = casAuthenticationDictBuffer;
             casAuthenticationDictBuffer = null;
-            if (_IsLoggedIn) throw new InvalidOperationException("用户已经登录。");
             Debug.Assert(dict != null);
             dict["username"] = userName;
             dict["password"] = password;
@@ -117,6 +118,7 @@ submit:登录
 
         public async Task LoginAsync(string userName, string password)
         {
+            if (_IsLoggedIn) throw new InvalidOperationException("用户已经登录。");
             await LoginAttemptAsync(userName, password);
             if (!_IsLoggedIn)
             {

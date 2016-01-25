@@ -16,7 +16,10 @@ namespace App2.Droid
     {
         public static void ReportException(Context context, Exception ex, bool details = false)
         {
-            using (var t = Toast.MakeText(context, details ? ex.ToString() : ex.Message, ToastLength.Long))
+#if DEBUG
+            details = true;
+#endif
+            using (var t = Toast.MakeText(context, details ? ex.ToString() : $"{ex.GetType()}: {ex.Message}", ToastLength.Long))
             {
                 t.Show();
             }
