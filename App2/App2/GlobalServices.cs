@@ -38,5 +38,12 @@ namespace App2
 
         static partial void LoadXjtuSite();
 
+        static partial void Initialize();
+
+        static GlobalServices()
+        {
+            Initialize();
+        }
+
     }
 }
