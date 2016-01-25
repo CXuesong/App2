@@ -60,6 +60,7 @@
     <Compile Include="Fragments\AccountProfileFragment.cs" />
     <Compile Include="Fragments\CardManagementFragment.cs" />
     <Compile Include="GlobalServices.cs" />
+    <Compile Include="ManualVerificationProvider.cs" />
     <Compile Include="LoginActivity.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="MyActivity.cs" />
@@ -85,6 +86,9 @@
       <SubType>AndroidResource</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\Bootstrapping.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\VerificationCodeInput.axml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>
   </ItemGroup>

@@ -10,13 +10,13 @@ namespace UnitTestProject1
 {
     class ManualVerificationProvider : IXjtuCardPasswordProvider, IVerificationCodeRecognizer
     {
-        public string GetPassword(Stream keypadImageStream, SiteManager site)
+        public async Task<string> GetPasswordAsync(Stream keypadImageStream, SiteManager site)
         {
             using (var wnd = new XjtuCardCaptchaDialog())
                 return wnd.Run(keypadImageStream, site);
         }
 
-        public string Recognize(Stream imageStream, SiteManager site)
+        public async Task<string> RecognizeAsync(Stream imageStream, SiteManager site)
         {
             using (var wnd = new XjtuCardCaptchaDialog())
                 return wnd.Run(imageStream, site);

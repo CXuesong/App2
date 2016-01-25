@@ -21,21 +21,33 @@ namespace App2.Droid.Fragments
         private Button refreshButton, transferButton;
 
 
-        public override void OnCreate(Bundle savedInstanceState)
+        public override async void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-            // Create your fragment here
+            if (GlobalServices.XjtuSite.Card.IsInvalidated)
+                await UpdateCardManager();
         }
 
-        public override async void OnStart()
+        public override void OnStart()
         {
             base.OnStart();
             GlobalServices.XjtuSite.Card.Updated += Card_Updated;
         }
 
+        public override void OnStop()
+        {
+            base.OnStop();
+            GlobalServices.XjtuSite.Card.Updated -= Card_Updated;
+        }
+
         private static CultureInfo zhCN = CultureInfo.GetCultureInfo("zh-CN");
 
         private void Card_Updated(object sender, EventArgs e)
+        {
+            UpdateDisplay();
+        }
+
+        private void UpdateDisplay()
         {
             if (balanceTextView != null)
             {
@@ -45,6 +57,7 @@ namespace App2.Droid.Fragments
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
+            DroidUtility.ShowToast(this.Activity, "CV");
             var view = inflater.Inflate(Resource.Layout.CardManagement, container, false);
             balanceTextView = view.FindViewById<TextView>(Resource.Id.balanceTextView);
             transferAmountEditText = view.FindViewById<EditText>(Resource.Id.transferAmountEditText);
@@ -53,7 +66,7 @@ namespace App2.Droid.Fragments
             transferAmountEditText.TextChanged += TransferAmountEditText_TextChanged;
             transferButton.Click += TransferButton_Click;
             refreshButton.Click += RefreshButton_Click;
-            if (GlobalServices.XjtuSite.Card.IsInvalidated) UpdateCardManager();
+            if (!GlobalServices.XjtuSite.Card.IsInvalidated) UpdateDisplay();
             return view;
         }
 
@@ -65,30 +78,33 @@ namespace App2.Droid.Fragments
         private async void TransferButton_Click(object sender, EventArgs e)
         {
             transferButton.Enabled = false;
+            var vp = new ManualVerificationProvider(Activity);
+            GlobalServices.XjtuSite.RegisterService(vp);
             try
             {
                 await GlobalServices.XjtuSite.Card.Transfer(Convert.ToDecimal(transferAmountEditText.Text));
             }
             catch (Exception ex)
             {
-                DroidUtility.ReportException(this.Activity, ex);
+                DroidUtility.ReportException(Activity, ex);
             }
             finally
             {
                 transferButton.Enabled = true;
+                GlobalServices.XjtuSite.UnregisterService(vp);
             }
         }
 
         private async Task UpdateCardManager()
         {
-            refreshButton.Enabled = false;
+            if (refreshButton != null) refreshButton.Enabled = false;
             try
             {
                 await GlobalServices.XjtuSite.Card.UpdateAsync();
             }
             finally
             {
-                refreshButton.Enabled = true;
+                if (refreshButton != null) refreshButton.Enabled = true;
             }
         }
 

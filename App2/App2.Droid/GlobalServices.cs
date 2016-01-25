@@ -58,7 +58,7 @@ namespace App2
         {
             using (var fs = Application.Context.OpenFileOutput("siteCookies", FileCreationMode.Private))
             {
-                binFormatter.Serialize(fs, GlobalServices.XjtuSite.WebClient.CookieContainer);
+                binFormatter.Serialize(fs, XjtuSite.WebClient.CookieContainer);
             }
         }
 

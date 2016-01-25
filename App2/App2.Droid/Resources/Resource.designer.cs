@@ -126,6 +126,12 @@ namespace App2.Droid
 			// aapt resource value: 0x7f050005
 			public const int userNameView = 2131034117;
 			
+			// aapt resource value: 0x7f050017
+			public const int verificationEditText = 2131034135;
+			
+			// aapt resource value: 0x7f050016
+			public const int verificationImageView = 2131034134;
+			
 			static Id()
 			{
 				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
@@ -159,6 +165,9 @@ namespace App2.Droid
 			
 			// aapt resource value: 0x7f030006
 			public const int Main = 2130903046;
+			
+			// aapt resource value: 0x7f030007
+			public const int VerificationCodeInput = 2130903047;
 			
 			static Layout()
 			{

@@ -78,13 +78,13 @@ password=xxxx&checkCode=1222&amt=10.00&fcard=bcard&tocard=card&bankno=&bankpwd=
             };
             using (var kps = await Client.DownloadStreamAsync(CardTransferCaptchaKeypadUrl))
             {
-                var result = pp.GetPassword(kps, Site);
+                var result = await pp.GetPasswordAsync(kps, Site);
                 if (result == null) return false;
                 dict["password"] = result;
             }
             using (var cs = await Client.DownloadStreamAsync(captchaSrc))
             {
-                var result = vcr.Recognize(cs, Site);
+                var result = await vcr.RecognizeAsync(cs, Site);
                 if (result == null) return false;
                 dict["checkCode"] = result;
             }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace App2
 {
@@ -14,7 +15,7 @@ namespace App2
         /// 根据指定流中包含的图片，识别验证码。
         /// </summary>
         /// <returns>识别的验证码，或<c>null</c>表示取消。</returns>
-        string Recognize(Stream imageStream, SiteManager site);
+        Task<string> RecognizeAsync(Stream imageStream, SiteManager site);
     }
 
     /*
@@ -36,6 +37,6 @@ namespace App2
     */
     public interface IXjtuCardPasswordProvider
     {
-        string GetPassword(Stream keypadImageStream, SiteManager site);
+        Task<string> GetPasswordAsync(Stream keypadImageStream, SiteManager site);
     }
 }
