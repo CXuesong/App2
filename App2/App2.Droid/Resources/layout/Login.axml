@@ -1,66 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:stretchColumns="1">
-    <TableRow>
-        <ImageView
-            android:src="@android:drawable/ic_menu_gallery"
-            android:layout_height="wrap_content"
-            android:id="@+id/imageView1"
-            android:layout_span="2" />
-    </TableRow>
-    <TableRow>
-        <TextView
-            android:text="账号"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/textView1"
-            android:layout_gravity="center" />
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/accountNameEdit"
-            android:layout_column="1" />
-    </TableRow>
-    <TableRow>
-        <TextView
-            android:text="密码"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/textView1" />
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/passwordEdit"
-            android:layout_column="1"
-            android:inputType="textPassword" />
-    </TableRow>
-    <TableRow>
-        <CheckBox
-            android:text="记住密码"
-            android:layout_column="1"
-            android:id="@+id/savePasswordCheckbox" />
-    </TableRow>
-    <TableRow>
-        <TableLayout
-            android:orientation="horizontal"
-            android:minWidth="25px"
-            android:minHeight="25px"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/linearLayout1"
-            android:layout_span="2"
-            android:stretchColumns="0">
-            <TableRow>
-                <Button
-                    android:text="登录"
-                    android:id="@+id/loginButton"
-                    android:layout_height="wrap_content"
-                    android:layout_width="match_parent"
-                    android:enabled="false" />
-            </TableRow>
-        </TableLayout>
-    </TableRow>
-</TableLayout>
+    android:layout_height="match_parent">
+    <ImageView
+        android:src="@drawable/banner"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView1"
+        android:layout_span="2"
+        android:scaleType="fitCenter"
+        android:layout_width="match_parent"
+        android:adjustViewBounds="true" />
+    <TableLayout
+        android:stretchColumns="1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        style="@style/rootContainer">
+        <TableRow>
+            <TextView
+                android:text="使用合法的西安交通大学 NetID 账号和密码进行登录。"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:id="@+id/textView5"
+                android:layout_span="2" />
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:text="账号"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/textView1"
+                android:layout_gravity="center"
+                android:gravity="center" />
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/accountNameEdit"
+                android:layout_column="1" />
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:text="密码"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/textView1"
+                android:gravity="center" />
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/passwordEdit"
+                android:layout_column="1"
+                android:inputType="textPassword" />
+        </TableRow>
+        <TableRow>
+            <CheckBox
+                android:text="记住密码"
+                android:layout_column="1"
+                android:id="@+id/savePasswordCheckbox" />
+        </TableRow>
+        <TableRow>
+            <TableLayout
+                android:orientation="horizontal"
+                android:minWidth="25px"
+                android:minHeight="25px"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/linearLayout1"
+                android:layout_span="2"
+                android:stretchColumns="0">
+                <TableRow>
+                    <Button
+                        android:text="登录"
+                        android:id="@+id/loginButton"
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:enabled="false" />
+                </TableRow>
+            </TableLayout>
+        </TableRow>
+    </TableLayout>
+</LinearLayout>

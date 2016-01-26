@@ -7,7 +7,8 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/offlineNotice">
+        android:id="@+id/offlineNotice"
+        android:gravity="center">
         <TextView
             android:text="无法连接到网络，请检查网络设置。"
             android:layout_width="wrap_content"
@@ -21,7 +22,7 @@
             android:layout_height="match_parent" />
     </LinearLayout>
     <ImageView
-        android:src="@android:drawable/ic_menu_gallery"
+        android:src="@drawable/splash"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/splashImageView"

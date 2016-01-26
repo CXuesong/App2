@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Android.App;
 using Android.Content;
+using Android.Content.PM;
 using Android.OS;
 using Android.Runtime;
 using Android.Views;
@@ -13,7 +14,7 @@ using Android.Widget;
 
 namespace App2.Droid
 {
-    [Activity(Label = "App2", MainLauncher = true, Icon = "@drawable/icon")]
+    [Activity(Label = "App2", MainLauncher = true, Icon = "@drawable/icon", ScreenOrientation = ScreenOrientation.Portrait)]
     public class BootstrappingActivity : MyActivity
     {
         private View offlineNotice;
@@ -24,10 +25,9 @@ namespace App2.Droid
             base.OnCreate(savedInstanceState);
             RequestWindowFeature(WindowFeatures.NoTitle);
             SetContentView(Resource.Layout.Bootstrapping);
-            var splashImageView = FindViewById<ImageView>(Resource.Id.splashImageView);
+            //var splashImageView = FindViewById<ImageView>(Resource.Id.splashImageView);
             offlineNotice = FindViewById<View>(Resource.Id.offlineNotice);
             retryButton = FindViewById<Button>(Resource.Id.retryButton);
-            splashImageView.SetImageResource(Resource.Drawable.Splash);
             retryButton.Click += RetryButton_Click;
             await Redirect();
         }

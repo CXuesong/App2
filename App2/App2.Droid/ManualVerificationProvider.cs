@@ -83,7 +83,7 @@ namespace App2.Droid
                                     ViewGroup.LayoutParams.WrapContent)
                                 {
                                     Span = 2,
-                                    Gravity = GravityFlags.Center
+                                    Gravity = GravityFlags.CenterVertical
                                 }
                             };
                             button.Click += (_, e) =>
@@ -135,6 +135,7 @@ namespace App2.Droid
                         tcs.SetResult(null);
                     })
                     .Show();
+                editText.RequestFocus();
             }
             return tcs.Task;
         }

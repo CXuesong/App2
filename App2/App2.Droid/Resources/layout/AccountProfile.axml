@@ -2,29 +2,31 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:padding="10dp">
     <LinearLayout
         android:orientation="horizontal"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/linearLayout1"
-        android:layout_gravity="right"
-        android:gravity="right">
+        android:id="@+id/linearLayout1">
         <ImageView
             android:src="@android:drawable/ic_menu_gallery"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:id="@+id/imageView1" />
+            android:id="@+id/imageView1"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter" />
         <TextView
             android:text="User Name"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:id="@+id/userNameView"
-            android:gravity="center" />
+            android:gravity="center"
+            android:padding="10dp" />
         <Button
             android:text="注销"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:id="@+id/logoutButton" />
     </LinearLayout>
 </LinearLayout>

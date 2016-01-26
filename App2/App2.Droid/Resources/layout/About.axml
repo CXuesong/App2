@@ -3,29 +3,48 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <TextView
-        android:text="App2"
-        android:textAppearance="?android:attr/textAppearanceLarge"
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/applicationNameTextView"
-        android:gravity="center" />
-    <TextView
-        android:text="by CXuesong, 2016"
-        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:id="@+id/frameLayout1">
+        <ImageView
+            android:src="@drawable/banner"
+            android:id="@+id/imageView1"
+            android:scaleType="fitCenter"
+            android:adjustViewBounds="true"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+        <TextView
+            android:text="Medium Text"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/versionTextView"
+            android:layout_gravity="right" />
+    </FrameLayout>
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/textView1"
-        android:gravity="center" />
-    <TextView
-        android:text="http://cxuesong.com\nhttp://github.com/cxuesong"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView2"
-        android:layout_marginTop="10px"
-        android:gravity="center"
-        android:autoLink="web"
-        android:textColorLink="@android:color/holo_blue_bright"
-        android:singleLine="false" />
+        android:id="@+id/linearLayout1"
+        style="@style/rootContainer">
+        <TextView
+            android:text="by CXuesong, 2016"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView1"
+            android:gravity="center" />
+        <TextView
+            android:text="http://cxuesong.com\nhttp://github.com/cxuesong"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView2"
+            android:layout_marginTop="10px"
+            android:gravity="center"
+            android:autoLink="web"
+            android:textColorLink="@android:color/holo_blue_bright"
+            android:singleLine="false" />
+    </LinearLayout>
 </LinearLayout>

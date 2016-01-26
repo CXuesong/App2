@@ -1,5 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<string name="hello">Hello World, Click Me!</string>
 	<string name="app_name">App2.Droid</string>
+  <string name="safety_warning">安全警告</string>
+  <string name="safety_warning_password">如果您需要保存密码，请确认以下事宜：\n\n服务器要求登录时必须传输明文密码（传输采用https协议，一般无须担心登录数据被截获），因而密码在本地只能以明文形式保存于此应用程序的私有存储区。如果您的设备没有root，则一般是安全的；否则，您需要自行承担风险。\n\n如果您已经理解并同意接受可能存在的风险，请轻触“我接受”以继续。</string>
+  <string name="safety_warning_no_password_persistence">服务器要求登录时必须传输明文密码（传输采用https协议，一般无须担心登录数据被截获），因而密码在本地只能以明文形式保存于此应用程序的私有存储区。\n为了保证安全性，当前编译版本中已经禁用了密码保存功能。如果需要启用，请前往 http://github.com/cxuesong/app2 下载源代码，定位到 LoginActivity.cs ，然后取消注释以下行：\n\n#define ALLOW_PASSWORD_PERSISTENCE\n\n最后重新编译即可。</string>
+  <string name="i_accept">我接受</string>
+  <string name="i_decline">我拒绝</string>
 </resources>

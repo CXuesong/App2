@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Android.App;
 using Android.Content;
+using Android.Content.PM;
 using Android.OS;
 using Android.Runtime;
 using Android.Util;
@@ -24,6 +25,9 @@ namespace App2.Droid.Fragments
         {
             base.OnCreateView(inflater, container, savedInstanceState);
             var view = inflater.Inflate(Resource.Layout.About, container, false);
+            var versionTextView = view.FindViewById<TextView>(Resource.Id.versionTextView);
+            var pm = Activity.PackageManager.GetPackageInfo(Activity.PackageName, default(PackageInfoFlags));
+            versionTextView.Text = $"{pm.VersionName} (v{pm.VersionCode})";
             return view;
         }
     }
