@@ -20,9 +20,17 @@ namespace App2.Droid
 #if DEBUG
             details = true;
 #endif
-            using (var t = Toast.MakeText(context, details ? ex.ToString() : $"{ex.GetType()}: {ex.Message}", ToastLength.Long))
+            if (details)
             {
-                t.Show();
+                new AlertDialog.Builder(context)
+                    .SetTitle(ex.GetType().ToString())
+                    .SetMessage(ex.ToString())
+                    .Show();
+            }
+            else
+            {
+                using (var t = Toast.MakeText(context, $"{ex.GetType()}: {ex.Message}", ToastLength.Long))
+                    t.Show();
             }
         }
 

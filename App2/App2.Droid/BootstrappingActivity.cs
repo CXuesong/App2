@@ -46,7 +46,7 @@ namespace App2.Droid
                 {
                     await GlobalServices.XjtuSite.Account.UpdateAsync();
                 }
-                catch (WebException ex)
+                catch (Exception ex) when (ex is WebException || ex is TaskCanceledException)
                 {
                     offlineNotice.Visibility = ViewStates.Visible;
                     DroidUtility.ReportException(this, ex);

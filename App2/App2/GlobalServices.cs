@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Net;
+#if !WINDOWS_PHONE_APP
 using System.Runtime.Serialization.Formatters.Binary;
+#endif
 using System.Text;
 using App2.Xjtu;
-using Java.IO;
 
 namespace App2
 {
@@ -14,7 +15,9 @@ namespace App2
     internal static partial class GlobalServices
     {
         private static XjtuSiteManager _XjtuSite;
+#if !WINDOWS_PHONE_APP
         private static readonly BinaryFormatter binFormatter = new BinaryFormatter();
+#endif
 
         public static XjtuSiteManager XjtuSite
         {

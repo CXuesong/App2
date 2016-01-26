@@ -50,7 +50,7 @@ namespace App2
             }
             catch (Exception ex)
             {
-                DroidUtility.ReportException(Application.Context, ex);
+                if (CurrentActivity != null) DroidUtility.ReportException(CurrentActivity, ex);
             }
         }
 

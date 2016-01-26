@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using Android.App;
@@ -105,8 +106,12 @@ namespace App2.Droid.Fragments
         {
             if (refreshButton != null) refreshButton.Enabled = false;
             try
-            {;
+            {
                 await GlobalServices.XjtuSite.Card.UpdateAsync();
+            }
+            catch (Exception ex) when (ex is WebException || ex is TaskCanceledException)
+            {
+                DroidUtility.ReportException(Activity, ex);
             }
             finally
             {
