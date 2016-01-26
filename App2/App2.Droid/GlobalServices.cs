@@ -16,22 +16,22 @@ namespace App2
 {
     partial class GlobalServices
     {
-        private static WeakReference<Context> _currentContext = new WeakReference<Context>(null);
+        private static readonly WeakReference<Activity> _currentActivity = new WeakReference<Activity>(null);
 
         /// <summary>
-        /// 应用程序当前活动的上下文。（一般为 Activity）
+        /// 应用程序当前活动的 Activity 。
         /// </summary>
-        public static Context CurrentContext
+        public static Activity CurrentActivity
         {
             get
             {
-                Context c;
-                if (_currentContext.TryGetTarget(out c)) return c;
+                Activity c;
+                if (_currentActivity.TryGetTarget(out c)) return c;
                 return null;
             }
             set
             {
-                _currentContext.SetTarget(value);
+                _currentActivity.SetTarget(value);
             }
         }
 
@@ -70,9 +70,9 @@ namespace App2
 
         private static void AndroidEnvironment_UnhandledExceptionRaiser(object sender, RaiseThrowableEventArgs e)
         {
-            if (CurrentContext != null)
+            if (CurrentActivity != null)
             {
-                DroidUtility.ReportException(CurrentContext, e.Exception, true);
+                DroidUtility.ReportException(CurrentActivity, e.Exception, true);
                 e.Handled = true;
             }
         }

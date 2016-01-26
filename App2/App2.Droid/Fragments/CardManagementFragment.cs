@@ -57,7 +57,6 @@ namespace App2.Droid.Fragments
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
-            DroidUtility.ShowToast(this.Activity, "CV");
             var view = inflater.Inflate(Resource.Layout.CardManagement, container, false);
             balanceTextView = view.FindViewById<TextView>(Resource.Id.balanceTextView);
             transferAmountEditText = view.FindViewById<EditText>(Resource.Id.transferAmountEditText);
@@ -66,6 +65,7 @@ namespace App2.Droid.Fragments
             transferAmountEditText.TextChanged += TransferAmountEditText_TextChanged;
             transferButton.Click += TransferButton_Click;
             refreshButton.Click += RefreshButton_Click;
+            balanceTextView.Text = "...";
             if (!GlobalServices.XjtuSite.Card.IsInvalidated) UpdateDisplay();
             return view;
         }
@@ -82,7 +82,13 @@ namespace App2.Droid.Fragments
             GlobalServices.XjtuSite.RegisterService(vp);
             try
             {
-                await GlobalServices.XjtuSite.Card.Transfer(Convert.ToDecimal(transferAmountEditText.Text));
+                var amount = Convert.ToDecimal(transferAmountEditText.Text);
+                if (amount < 0.01m || amount > 500) return;
+                if (await GlobalServices.XjtuSite.Card.Transfer(amount))
+                {
+                    transferAmountEditText.Text = "";
+                    DroidUtility.ShowToast(Activity, string.Format(zhCN, "向过渡账户转入了{0:C}。\n将会在下次消费时转入校园卡。", amount));
+                }
             }
             catch (Exception ex)
             {
@@ -99,7 +105,7 @@ namespace App2.Droid.Fragments
         {
             if (refreshButton != null) refreshButton.Enabled = false;
             try
-            {
+            {;
                 await GlobalServices.XjtuSite.Card.UpdateAsync();
             }
             finally

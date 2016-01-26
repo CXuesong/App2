@@ -7,6 +7,7 @@ using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Runtime;
+using Android.Util;
 using Android.Views;
 using Android.Widget;
 
@@ -31,6 +32,31 @@ namespace App2.Droid
             {
                 t.Show();
             }
+        }
+
+        private static DisplayMetrics _DisplayMetrics;
+
+        public static DisplayMetrics DisplayMetrics
+        {
+            get
+            {
+                if (_DisplayMetrics == null)
+                {
+                    _DisplayMetrics = new DisplayMetrics();
+                    GlobalServices.CurrentActivity.WindowManager.DefaultDisplay.GetMetrics(_DisplayMetrics);
+                }
+                return _DisplayMetrics;
+            }
+        }
+
+        public static int DipToPixelsX(float dip)
+        {
+            return (int) (dip*DisplayMetrics.Xdpi/160.0);
+        }
+
+        public static int DipToPixelsY(float dip)
+        {
+            return (int) (dip*DisplayMetrics.Ydpi/160.0);
         }
     }
 }

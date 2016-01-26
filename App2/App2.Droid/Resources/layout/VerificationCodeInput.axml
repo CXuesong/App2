@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/verificationImageView"
         android:scaleType="fitCenter"
-        android:minHeight="48px" />
+        android:minHeight="75dp" />
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

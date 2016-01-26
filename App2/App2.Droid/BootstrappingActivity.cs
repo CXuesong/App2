@@ -22,9 +22,12 @@ namespace App2.Droid
         protected override async void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
+            RequestWindowFeature(WindowFeatures.NoTitle);
             SetContentView(Resource.Layout.Bootstrapping);
+            var splashImageView = FindViewById<ImageView>(Resource.Id.splashImageView);
             offlineNotice = FindViewById<View>(Resource.Id.offlineNotice);
             retryButton = FindViewById<Button>(Resource.Id.retryButton);
+            splashImageView.SetImageResource(Resource.Drawable.Splash);
             retryButton.Click += RetryButton_Click;
             await Redirect();
         }

@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<resources>
+  <style name="PasswordPadDigitButton">
+    <item name="android:padding">6dp</item>
+    <item name="android:layout_width">48dp</item>
+    <item name="android:layout_height">48dp</item>
+    <item name="android:layout_gravity">center</item>
+    <item name="android:scaleType">fitCenter</item>
+    <item name="android:background">#FFFF0000</item>
+  </style>
+</resources>
+
+

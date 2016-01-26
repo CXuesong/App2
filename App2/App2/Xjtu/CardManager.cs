@@ -51,6 +51,23 @@ namespace App2.Xjtu
                 _Balance = null;
         }
 
+        private static MapAreaInfo[] mapAreas =
+        {
+            new MapAreaInfo(4, 3, 29, 28, "0"),
+            new MapAreaInfo(33, 3, 58, 28, "1"),
+            new MapAreaInfo(62, 3, 88, 28, "2"),
+            new MapAreaInfo(92, 3, 118, 28, "3"),
+            new MapAreaInfo(122, 3, 148, 28, "4"),
+            new MapAreaInfo(152, 3, 178, 28, "5"),
+            new MapAreaInfo(182, 3, 207, 28, "6"),
+            new MapAreaInfo(211, 3, 236, 28, "7"),
+            new MapAreaInfo(241, 3, 266, 28, "8"),
+            new MapAreaInfo(270, 3, 295, 28, "9"),
+            new MapAreaInfo(5, 33, 74, 148, "Backspace"),
+            new MapAreaInfo(78, 33, 221, 148, "Clear"),
+            new MapAreaInfo(227, 33, 295, 148, "Close"),
+        };
+
         /// <summary>
         /// 向校园卡转账。
         /// </summary>
@@ -78,7 +95,7 @@ password=xxxx&checkCode=1222&amt=10.00&fcard=bcard&tocard=card&bankno=&bankpwd=
             };
             using (var kps = await Client.DownloadStreamAsync(CardTransferCaptchaKeypadUrl))
             {
-                var result = await pp.GetPasswordAsync(kps, Site);
+                var result = await pp.GetPasswordAsync(kps, mapAreas, Site);
                 if (result == null) return false;
                 dict["password"] = result;
             }

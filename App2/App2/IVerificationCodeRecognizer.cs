@@ -37,6 +37,32 @@ namespace App2
     */
     public interface IXjtuCardPasswordProvider
     {
-        Task<string> GetPasswordAsync(Stream keypadImageStream, SiteManager site);
+        Task<string> GetPasswordAsync(Stream keypadImageStream, IList<MapAreaInfo> mapAreas, SiteManager site);
+    }
+
+    public struct MapAreaInfo
+    {
+        public MapAreaInfo(int x1, int y1, int x2, int y2, string value)
+        {
+            X1 = x1;
+            Y1 = y1;
+            X2 = x2;
+            Y2 = y2;
+            Value = value;
+        }
+
+        public int X1 { get; }
+
+        public int X2 { get; }
+
+        public int Y1 { get; }
+
+        public int Y2 { get; }
+
+        public int Width => X2 - X1;
+
+        public int Height => Y2 - Y1;
+
+        public string Value { get; }
     }
 }

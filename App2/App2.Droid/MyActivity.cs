@@ -17,7 +17,7 @@ namespace App2.Droid
         protected override void OnResume()
         {
             base.OnResume();
-            GlobalServices.CurrentContext = this;
+            GlobalServices.CurrentActivity = this;
         }
     }
 }
